@@ -3,5 +3,5 @@ project(Assignment_5)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp BST.cpp BST.h QueueL.cpp QueueL.h Stackt.cpp Stackt.h)
 add_executable(Assignment_5 ${SOURCE_FILES})
