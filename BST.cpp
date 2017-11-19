@@ -30,7 +30,7 @@ bool BST<keyType, dataType>::search(const keyType& k) const
 }
 
 template <class keyType, class dataType>
-dataType BST<keyType, dataType>::retrieve(const keyType& k) const
+dataType BST<keyType, dataType>::retrieve(const keyType &k)
 {
     return retrieve2(root, k);
 }
@@ -71,9 +71,9 @@ bool BST<keyType, dataType>::search2(nodepointer aRoot, const keyType& k) const
     if (k == aRoot->key)
         return true;
     else if (k < aRoot->key)
-        search2(aRoot->left, k, d);
+        return search2(aRoot->left, k);
     else if (k > aRoot->key)
-        search2(aRoot->right, k, d);
+        return search2(aRoot->right, k);
     else
         return false;
 }
@@ -92,9 +92,9 @@ dataType BST<keyType, dataType>::retrieve2(nodepointer aRoot, const keyType & k)
         if (k == aRoot->key)
             return aRoot->data;
         else if (k < aRoot->key)
-            retrieve(aRoot->left, k);
+            return retrieve2(aRoot->left, k);
         else
-            retrieve(aRoot->right, k);
+            return retrieve2(aRoot->right, k);
     }
     else
     {
@@ -108,7 +108,7 @@ void BST<keyType, dataType>::level_order()const
 {
     traverse2( root);
 }
-template <class keyType,dataType>
+template <class keyType, class dataType>
 void BST<keyType, dataType>::level_order2(nodepointer root) const
 {
     nodepointer t;
@@ -139,7 +139,7 @@ template<class keyType, class dataType>
 void BST<keyType, dataType>::preorder2(nodepointer root)const
 {
     nodepointer t;
-    Stackt(128) S;
+    Stackt<nodepointer> S;
 
     S.push(t);
     while (!S.stackIsEmpty())
@@ -173,13 +173,13 @@ bool BST<keyType, dataType>::Remove2(nodepointer root, const keyType& k)
 */
 
 template <class keyType,class dataType>
-void BST<keyType, dataTYpe>::void traverse()const
+void BST<keyType, dataType>::traverse()const
 {
     traverse2(root);
 }
 
 template <class keyType, class dataType>
-void BST<keyType, dataTYpe>::void traverse2()const
+void BST<keyType, dataType>::traverse2(nodepointer) const
 {
     nodepointer t;
     t = root;
