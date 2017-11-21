@@ -129,7 +129,7 @@ void BST<keyType, dataType>::update2(const keyType &word, int &count, nodepointe
     if (aRoot == nullptr)
         return;
     if (word == aRoot->key)
-    {aRoot->data +=count;
+    {aRoot->data += count;
         return;}
 
     update2(word, count, aRoot->left);

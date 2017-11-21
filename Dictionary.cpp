@@ -53,21 +53,12 @@ void Dictionary::read(std::string & filename) {
      ifstream file;
      opening(file,filename);
      char c;
-    string word ="";
+    string word;
 
     while (file.good()) {
-        file.get(c);
-        word += c;
-        while ((file.good()) && !isspace(c)) {
-            file.get(c);
-            if (!isspace(c))
-                word += c;
-        }
-
-
-}
-
-
+        file>>word;
+        insert(word);
+    }
     }
 
 void Dictionary::import(std::string &filename) {
@@ -88,6 +79,9 @@ void Dictionary::import(std::string &filename) {
 
 
 }
+
+void Dictionary::import()
+
 void Dictionary::opening(std::ifstream &file, const std::string &filename) {
 
     file.open(filename);
