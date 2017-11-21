@@ -16,6 +16,23 @@ BST<keyType, dataType>::BST()
     root = NULL;
     csize = 0;
 }
+template <class keyType, class dataType>
+void BST<keyType, dataType>::store(std::ofstream &file) {
+    store2(file, root);
+}
+
+template <class keyType, class dataType>
+void BST<keyType, dataType>::store2(std::ofstream &file, nodepointer& pointer){
+    if (pointer!= nullptr)
+    {file>>pointer->key>>endl;
+    file>>pointer->data>>endl;
+    store2(file, pointer->left);
+    store2(file, pointer->right);
+    }
+    else return;
+};
+
+
 
 template <class keyType, class dataType>
 bool BST<keyType, dataType>::insert(const keyType& k, const dataType& d)
@@ -102,11 +119,29 @@ dataType BST<keyType, dataType>::retrieve2(nodepointer aRoot, const keyType & k)
         return -1;
     }
 }
+template<class keyType,class dataType>
+void BST<keyType, dataType>::update(const keyType &word, int &count) {
+    update2(word, count, root);
+}
+
+template<class keyType,class dataType>
+void BST<keyType, dataType>::update2(const keyType &word, int &count, nodepointer& aRoot){
+    if (aRoot == nullptr)
+        return;
+    if (word == aRoot->key)
+    {aRoot->data +=count;
+        return;}
+
+    update2(word, count, aRoot->left);
+    update2(word, count, aRoot->right);
+
+};
+
 
 template<class keyType,class dataType>
 void BST<keyType, dataType>::level_order()const
 {
-    traverse2( root);
+    traverse2(root);
 }
 template <class keyType, class dataType>
 void BST<keyType, dataType>::level_order2(nodepointer root) const
