@@ -114,7 +114,7 @@ void BST<keyType, dataType>::level_order2(nodepointer root) const
     nodepointer t;
     QueueL q;
 
-    t == root;
+    t = root;
     q.enqueue(t);
     while (!q.queueIsEmpty())
     {
