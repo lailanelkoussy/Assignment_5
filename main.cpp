@@ -18,13 +18,17 @@ int main() {
     cin>>casenum;
     switch (casenum){
         case 1:
-            cout<<"Enter the filename that you want to build the dictionary with: ";
+        {cout<<"Enter the filename that you want to build the dictionary with: ";
             cin>>path;
             dict.setdPath;
             dict.read(path);
+        }
+        break;
 
-    }
+        case 2:
+        {
 
+        }}
 
 
 

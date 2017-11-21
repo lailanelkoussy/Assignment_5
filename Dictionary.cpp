@@ -126,5 +126,11 @@ int Dictionary::getIndex(std::string &s) {
 
 void Dictionary::removeSymbols(std::string &word) {
 
+    for (int i = 0; i < str.size(); i++)
+        if ((((int)str.at(i)) < 0) || ((!isalnum(str.at(i))) && (str.at(i) != '\'')))
+        {
+            str.erase(i, 1);
+            i--;
+        }
 
 }
