@@ -1,11 +1,15 @@
 //
-// Created by Laila Nasser ElKoussy 900160812 on 11/19/17.
+// Created on 18/11/17 by
+// Laila Nasser ElKoussy 900160812
+// Azza Al Awady 900152287
+// Hebatallah Farid 900160023
 //
 
 #ifndef ASSIGNMENT_5_BST_H
 #define ASSIGNMENT_5_BST_H
 
-#include <fstream>
+#include <iostream>
+
 
 template <class keyType, class dataType>
 class BST {
@@ -45,6 +49,7 @@ private:
     void store2(std::ofstream &file, node*&);
     void update2 (const keyType&, int &count, node* &);
     dataType retrieve2(node* , const keyType &) const;
+
 
 };
 

@@ -1,14 +1,19 @@
+//
 // Created on 18/11/17 by
 // Laila Nasser ElKoussy 900160812
 // Azza Al Awady 900152287
 // Hebatallah Farid 900160023
+//
 
-#include <iostream>
-#include <iomanip>
-#include <queue>
-#include <stack>
 #include "BST.h"
+#include <iostream>
+#include <stack>
+#include <queue>
+#include <fstream>
+
+
 using namespace std;
+
 
 template <class keyType, class dataType>
 BST<keyType, dataType>::BST()
@@ -25,8 +30,8 @@ template <class keyType, class dataType>
 void BST<keyType, dataType>::store2(std::ofstream &file, node*& pointer){
     if (pointer!= nullptr)
     {file<<pointer->key<<endl<<pointer->data<<endl;
-    store2(file, pointer->left);
-    store2(file, pointer->right);
+        store2(file, pointer->left);
+        store2(file, pointer->right);
     }
     else return;
 };
@@ -97,7 +102,7 @@ bool BST<keyType, dataType>::search2(node* aRoot, const keyType& k) const
 template <class keyType, class dataType>
 bool BST<keyType, dataType>::empty()
 {   if (root == nullptr)
-    return true;
+        return true;
     else return false;
 }
 
