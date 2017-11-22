@@ -11,6 +11,10 @@ Dictionary::Dictionary() {
     size = 0;
 
 }
+Dictionary::~Dictionary() {
+    for (int i = 0; i<36; i++)
+        delete Table[i];
+}
 
 void Dictionary::setdPath(std::string &s) {
 

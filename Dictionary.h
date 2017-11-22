@@ -13,6 +13,7 @@
 class Dictionary {
 public:
     Dictionary ();
+    ~Dictionary();
     void storeDictionary(); // before exiting the file, saves all of the contents of the file onto
     void import(std::string& filename); //adds content of an old dictionary file into the dictionary
     void import(); // adds content of the default path;
