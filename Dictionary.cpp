@@ -3,13 +3,12 @@
 //
 
 #include "Dictionary.h"
-#include <fstream>
-#include <iostream>
 
 using namespace std;
 
 Dictionary::Dictionary() {
     dPath = "default.txt";
+    size = 0;
 
 }
 
@@ -29,7 +28,8 @@ void Dictionary::insert(std::string &s) {
         index = getIndex(s);
 
         if (!Table[index].search(s))
-        Table[index].insert(s,one);
+        {Table[index].insert(s,one);
+        size++; }
 
         else Table[index].update(s,one);
 }}
@@ -41,7 +41,8 @@ void Dictionary::insert(std::string &word, int &count) {
 
     if (Table[index].search(word))
         Table[index].update (word, count);
-    else Table[index].insert(word, count);
+    else {Table[index].insert(word, count);
+    size++; }
 
 }
 void Dictionary::storeDictionary() {
@@ -136,5 +137,19 @@ void Dictionary::removeSymbols(std::string &word) {
             word.erase(i, 1);
             i--;
         }
+}
+
+void Dictionary::traverse() {
+    for (int i = 0; i<36; i++)
+        Table[i].traverse();
+}
+
+void Dictionary::search(string & word) {
+    Table[getIndex(word)].search(word);
+}
+
+void Dictionary::max() {
+    for (int i = 0; i<36; i++ )
+     Table[i].max();
 }
 

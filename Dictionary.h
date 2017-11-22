@@ -20,11 +20,15 @@ public:
     void setdPath(std::string&);
     void insert (std::string & word, int &count); //when importing from dictionary
     void read (std::string &filename); //takes a new file to add to the dictionary
+    void traverse(); // prints out all of the dictionary
+    void search(string & word); // finds word and prints it out with its data
+    void max(); //gets maximum frequency for each binary tree
 
 
 private:
     BST<std::string, int> Table[36];
     std::string dPath;
+    int size;
     void toLowerCase (std::string & );
     int getIndex(std::string &);
     void opening (std::ifstream &file, const std::string& filename);

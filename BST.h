@@ -17,16 +17,19 @@ class BST {
 public:
 
     BST();
+    ~BST();
     bool insert(const keyType&, const dataType&);
-    bool search(const keyType&) const;
+    bool search(const keyType&);
     dataType retrieve(const keyType &);
     bool empty();
-    void traverse()const;
+    void traverse();
     void level_order()const;
     void preorder()const;
     bool Remove(const keyType&);
     void update (const keyType&, int &count);
     void store(std::ofstream &file);
+    void print(keyType &k);
+    void max();
 
 
 private:
@@ -41,14 +44,17 @@ private:
     int csize;
     node * root;
     bool insert2(node*&, const keyType &, const dataType &);
-    bool search2(node*, const keyType&) const;
-    void level_order2(node*)const;
-    void preorder2(node*)const;
-    bool Remove2(node*,const keyType &);
-    void traverse2(node*)const;
+    bool search2(node* & , const keyType&);
+    void level_order2(node*&)const;
+    void preorder2(node*&)const;
+    bool Remove2(node* &,const keyType &);
+    void traverse2( node*& )const;
     void store2(std::ofstream &file, node*&);
     void update2 (const keyType&, int &count, node* &);
-    dataType retrieve2(node* , const keyType &) const;
+    dataType retrieve2(node*& , const keyType &);
+    void print2(node* &aRoot, keyType & k);
+    void max2(node*& aRoot, keyType &k, dataType&d);
+    void destruct(node* aRoot);
 
 
 };
