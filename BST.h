@@ -21,7 +21,6 @@ public:
     void level_order()const;
     void preorder()const;
     bool Remove(const keyType&);
-    typedef node * nodepointer;
     void update (const keyType&, int &count);
     void store(std::ofstream &file);
 
@@ -36,17 +35,16 @@ private:
         node * right;
     };
     int csize;
-    typedef node * nodepointer;
-    nodepointer root;
-    bool insert2(nodepointer&, const keyType &, const dataType &);
-    bool search2(nodepointer, const keyType&) const;
-    void level_order2(nodepointer)const;
-    void preorder2(nodepointer)const;
-    bool Remove2(nodepointer,const keyType &);
-    void traverse2(nodepointer)const;
-    void store2(std::ofstream &file, nodepointer&);
-    void update2 (const keyType&, int &count, nodepointer &);
-    dataType retrieve2(nodepointer , const keyType &) const;
+    node * root;
+    bool insert2(node*&, const keyType &, const dataType &);
+    bool search2(node*, const keyType&) const;
+    void level_order2(node*)const;
+    void preorder2(node*)const;
+    bool Remove2(node*,const keyType &);
+    void traverse2(node*)const;
+    void store2(std::ofstream &file, node*&);
+    void update2 (const keyType&, int &count, node* &);
+    dataType retrieve2(node* , const keyType &) const;
 
 };
 

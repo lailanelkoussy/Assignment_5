@@ -1,8 +1,7 @@
 #include <iostream>
-#include "BST.h"
-#include "BST.cpp"
 #include "Dictionary.h"
 #include "Dictionary.cpp"
+
 
 using namespace std;
 
@@ -20,15 +19,24 @@ int main() {
         case 1:
         {cout<<"Enter the filename that you want to build the dictionary with: ";
             cin>>path;
-            dict.setdPath;
             dict.read(path);
+            dict.storeDictionary();
         }
         break;
 
         case 2:
         {
+            cout<<"Importing files from default file"<<endl;
+            dict.import();
+        }
+            break;
 
-        }}
+        default:
+        {
+            cout<<"Importing default dictionary, what would you like to ask about it?";
+            dict.import();
+        }
+    }
 
 
 

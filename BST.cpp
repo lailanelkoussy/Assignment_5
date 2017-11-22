@@ -5,8 +5,8 @@
 
 #include <iostream>
 #include <iomanip>
-#include"QueueL.h";
-#include"Stackt.h";
+#include <queue>
+#include <stack>
 #include "BST.h"
 using namespace std;
 
@@ -22,10 +22,9 @@ void BST<keyType, dataType>::store(std::ofstream &file) {
 }
 
 template <class keyType, class dataType>
-void BST<keyType, dataType>::store2(std::ofstream &file, nodepointer& pointer){
+void BST<keyType, dataType>::store2(std::ofstream &file, node*& pointer){
     if (pointer!= nullptr)
-    {file>>pointer->key>>endl;
-    file>>pointer->data>>endl;
+    {file<<pointer->key<<endl<<pointer->data<<endl;
     store2(file, pointer->left);
     store2(file, pointer->right);
     }
@@ -53,9 +52,9 @@ dataType BST<keyType, dataType>::retrieve(const keyType &k)
 }
 
 template <class keyType, class dataType>
-bool BST<keyType, dataType>::insert2(nodepointer& aRoot, const keyType & k, const dataType & d)
+bool BST<keyType, dataType>::insert2(node*& aRoot, const keyType & k, const dataType & d)
 {
-    nodepointer temp;
+    node* temp;
     if (aRoot == NULL)
     {
         temp = new node;
@@ -81,9 +80,9 @@ bool BST<keyType, dataType>::insert2(nodepointer& aRoot, const keyType & k, cons
 }
 
 template <class keyType, class dataType>
-bool BST<keyType, dataType>::search2(nodepointer aRoot, const keyType& k) const
+bool BST<keyType, dataType>::search2(node* aRoot, const keyType& k) const
 {
-    if (empty)
+    if (csize==0)
         return false;
     if (k == aRoot->key)
         return true;
@@ -97,12 +96,13 @@ bool BST<keyType, dataType>::search2(nodepointer aRoot, const keyType& k) const
 
 template <class keyType, class dataType>
 bool BST<keyType, dataType>::empty()
-{
-    return (root == NULL);
+{   if (root == nullptr)
+    return true;
+    else return false;
 }
 
 template <class keyType, class dataType>
-dataType BST<keyType, dataType>::retrieve2(nodepointer aRoot, const keyType & k) const
+dataType BST<keyType, dataType>::retrieve2(node* aRoot, const keyType & k) const
 {
     if (search(k))
     {
@@ -125,7 +125,7 @@ void BST<keyType, dataType>::update(const keyType &word, int &count) {
 }
 
 template<class keyType,class dataType>
-void BST<keyType, dataType>::update2(const keyType &word, int &count, nodepointer& aRoot){
+void BST<keyType, dataType>::update2(const keyType &word, int &count, node*& aRoot){
     if (aRoot == nullptr)
         return;
     if (word == aRoot->key)
@@ -144,21 +144,22 @@ void BST<keyType, dataType>::level_order()const
     traverse2(root);
 }
 template <class keyType, class dataType>
-void BST<keyType, dataType>::level_order2(nodepointer root) const
+void BST<keyType, dataType>::level_order2(node* root) const
 {
-    nodepointer t;
-    QueueL q;
+    node* t;
+    queue<node*> q;
 
     t = root;
-    q.enqueue(t);
-    while (!q.queueIsEmpty())
+    q.push(t);
+    while (!q.empty())
     {
-        q.dequeue(t);
+        t=q.front();
+        q.pop();
         cout << t->data<<"      ";
         if (t->left!=NULL)
-            q.enqueue(t-> left);
+            q.push(t-> left);
         if (t->right != NULL)
-            q.enqueue(t->right);
+            q.push(t->right);
     }
 
 
@@ -171,15 +172,16 @@ void BST<keyType, dataType>::preorder() const
 }
 
 template<class keyType, class dataType>
-void BST<keyType, dataType>::preorder2(nodepointer root)const
+void BST<keyType, dataType>::preorder2(node* root)const
 {
-    nodepointer t;
-    Stackt<nodepointer> S;
+    node* t;
+    stack<node*> S;
 
     S.push(t);
-    while (!S.stackIsEmpty())
+    while (!S.empty())
     {
-        S.pop(t);
+        t= S.top();
+        S.pop();
         cout << t->data<<"     ";
         if (t->right != NULL)
             S.push(t->right);
@@ -187,41 +189,5 @@ void BST<keyType, dataType>::preorder2(nodepointer root)const
             S.push(t->left);
 
 
-    }
-}
-
-/*template <class keyType,class dataType>
-bool BST<keyType, dataType>::Remove(const keyType&)
-{
-	return Remove2(root, k);
-}
-
-template <class keyType, class dataType>
-bool BST<keyType, dataType>::Remove2(nodepointer root, const keyType& k)
-{
-	if (root == NULL)
-		return false;
-	if (k == root->k)
-	{
-	}
-}
-*/
-
-template <class keyType,class dataType>
-void BST<keyType, dataType>::traverse()const
-{
-    traverse2(root);
-}
-
-template <class keyType, class dataType>
-void BST<keyType, dataType>::traverse2(nodepointer) const
-{
-    nodepointer t;
-    t = root;
-    if (t != NULL)
-    {
-        traverse2(t->left);
-        cout << t->data << "     ";
-        traverse2(t->right);
     }
 }

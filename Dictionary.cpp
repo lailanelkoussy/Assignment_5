@@ -3,6 +3,8 @@
 //
 
 #include "Dictionary.h"
+#include "BST.h"
+#include "BST.cpp"
 #include <fstream>
 #include <iostream>
 
@@ -80,7 +82,9 @@ void Dictionary::import(std::string &filename) {
 
 }
 
-void Dictionary::import()
+void Dictionary::import(){
+    import(dPath);
+}
 
 void Dictionary::opening(std::ifstream &file, const std::string &filename) {
 
@@ -126,10 +130,10 @@ int Dictionary::getIndex(std::string &s) {
 
 void Dictionary::removeSymbols(std::string &word) {
 
-    for (int i = 0; i < str.size(); i++)
-        if ((((int)str.at(i)) < 0) || ((!isalnum(str.at(i))) && (str.at(i) != '\'')))
+    for (int i = 0; i < word.size(); i++)
+        if ((((int)word.at(i)) < 0) || ((!isalnum(word.at(i))) && (word.at(i) != '\'')))
         {
-            str.erase(i, 1);
+            word.erase(i, 1);
             i--;
         }
 
