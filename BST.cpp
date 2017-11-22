@@ -61,42 +61,124 @@ bool BST<keyType, dataType>::insert2(node*& aRoot, const keyType & k, const data
 {
     node* temp;
     if (aRoot == NULL)
-    {
-        temp = new node;
+    {temp = new node;
         temp->left = nullptr;
         temp->right = nullptr;
         temp->key = k;
         temp->data = d;
         csize++;
-        return true;
-    }
+        return true;}
+
     else if (k == aRoot->key)
+        return false;
+    else if (k< aRoot->key)
+        return insert2(aRoot->left, k, d);
+    else
+        return insert2(aRoot->right, k, d);
+
+}
+
+template <class keyType,class dataType>
+bool BST<keyType, dataType>::Remove(const keyType& k)
+{
+    return Remove2(root, k);
+}
+template <class keyType, class dataType>
+bool BST<keyType, dataType>::Remove2(node* root, const keyType& k)
+{
+    node* h, *f,*d,*s;
+    dataType m;
+    bool found = false;
+
+    if (root == nullptr)
     {
+        cout << "not found";
         return false;
     }
-    else if (k< aRoot->key)
+
+    h = root;
+    m = retrieve2(root, k);
+    while ((h->data != m) || (h==nullptr))
     {
-        insert2(aRoot->left, k, d);
+        if (k < h->key)
+        {
+            f = h;
+            h = h->left;
+        }
+        else if (k > h->key)
+        {
+            f = h;
+            h = h->right;
+        }
     }
+    if (h == nullptr)
+    {
+        cout << "not found";
+        return false;
+    }
+
     else
     {
-        insert2(aRoot->right, k, d);
+        if ((h->left != nullptr) && (h->right != nullptr))
+        {
+            d = h;
+            s = d->left;
+            while (s->right != nullptr)
+            {
+                d = s;
+                s = s->right;
+            }
+            d->right = nullptr;
+            h->data = s->data;
+            h->key = s->key;
+            delete s;
+            return true;
+        }
+        if (h->left == nullptr)
+        {
+            d = h->right;
+            f->right = d;
+            delete h;
+            return true;
+        }
+        if (h->right == nullptr)
+        {
+            d = h->left;
+            f->left = d;
+            delete h;
+            return true;
+        }
+        else
+        {
+            if (f->right == h)
+            {
+                f->right = nullptr;
+                delete h;
+                return true;
+            }
+            if (f->left == h)
+            {
+                f->left = nullptr;
+                delete h;
+                return true;
+            }
+        }
     }
 }
+
+
 
 template <class keyType, class dataType>
 bool BST<keyType, dataType>::search2(node* aRoot, const keyType& k) const
 {
-    if (csize==0)
-        return false;
     if (k == aRoot->key)
-        return true;
+    {return true;}
     else if (k < aRoot->key)
-        return search2(aRoot->left, k);
+    {return search2(aRoot->left, k);}
     else if (k > aRoot->key)
-        return search2(aRoot->right, k);
+    {return search2(aRoot->right, k);}
     else
-        return false;
+    {return false;}
 }
 
 template <class keyType, class dataType>
@@ -194,5 +276,25 @@ void BST<keyType, dataType>::preorder2(node* root)const
             S.push(t->left);
 
 
+    }
+}
+
+
+template <class keyType, class dataType>
+void BST<keyType, dataType>::traverse()const
+{
+    traverse2(root);
+}
+
+template <class keyType, class dataType>
+void BST<keyType, dataType>::traverse2(node*) const
+{
+    node* t;
+    t = root;
+    if (t != NULL)
+    {
+        traverse2(t->left);
+        cout << t->data << "     ";
+        traverse2(t->right);
     }
 }

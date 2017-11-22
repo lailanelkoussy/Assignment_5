@@ -3,15 +3,13 @@
 //
 
 #include "Dictionary.h"
-#include "BST.h"
-#include "BST.cpp"
 #include <fstream>
 #include <iostream>
 
 using namespace std;
 
 Dictionary::Dictionary() {
-  dPath = "default.txt";
+    dPath = "default.txt";
 
 }
 
@@ -52,32 +50,31 @@ void Dictionary::storeDictionary() {
 }
 
 void Dictionary::read(std::string & filename) {
-     ifstream file;
-     opening(file,filename);
-     char c;
+    ifstream file;
+    opening(file,filename);
     string word;
 
     while (file.good()) {
         file>>word;
         insert(word);
     }
-    }
+}
 
 void Dictionary::import(std::string &filename) {
-        ifstream file;
-        opening(file, filename);
-        string word,counts;
-        int count;
+    ifstream file;
+    opening(file, filename);
+    string word,counts;
+    int count;
 
-        while (file.good()) {
-            getline(file, word);
-            getline(file,counts);
-            count = stoi(counts);
+    while (file.good()) {
+        getline(file, word);
+        getline(file,counts);
+        count = stoi(counts);
 
-            insert(word, count);
-        }
+        insert(word, count);
+    }
 
-        file.close();
+    file.close();
 
 
 }
@@ -136,5 +133,5 @@ void Dictionary::removeSymbols(std::string &word) {
             word.erase(i, 1);
             i--;
         }
-
 }
+
