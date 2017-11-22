@@ -25,11 +25,14 @@ void Dictionary::insert(std::string &s) {
     if ((!isalpha(s[0]) && (!isdigit(s[0]))))
         return;
 
-    index = getIndex(s);
-    if (!Table[index].search(s))
+    else {
+        index = getIndex(s);
+
+        if (!Table[index].search(s))
         Table[index].insert(s,one);
-    else Table[index].update(s,one);
-}
+
+        else Table[index].update(s,one);
+}}
 
 void Dictionary::insert(std::string &word, int &count) {
     toLowerCase(word);
@@ -128,7 +131,7 @@ int Dictionary::getIndex(std::string &s) {
 void Dictionary::removeSymbols(std::string &word) {
 
     for (int i = 0; i < word.size(); i++)
-        if ((((int)word.at(i)) < 0) || ((!isalnum(word.at(i))) && (word.at(i) != '\'')))
+        if ((!isalnum(word[i])))
         {
             word.erase(i, 1);
             i--;
